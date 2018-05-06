@@ -26,7 +26,7 @@ namespace ZipFile_Cracker
 
             Here: //a return point
 
-            Console.WriteLine("Enter the Password List File Name :: example (rockyou.txt)");
+            Console.WriteLine("Put the name of the password list (It has to be on the same directory as the .exe file :: Example (rockyou.txt)");
 
             string passwordList = Console.ReadLine();
 
@@ -34,35 +34,35 @@ namespace ZipFile_Cracker
 
             if(File.Exists(passwordList))
             {
-                Console.WriteLine("Password list is found ok");
+                Console.WriteLine("The password list was found");
 
             }
             else
             {
-                Console.WriteLine("Password missing");
+                Console.WriteLine("The password list was not found");
 
                 goto Here;
             }
 
-            Console.WriteLine("Enter the Path to A protected Zip File");
+            Console.WriteLine("Put the full path of the .zip, .rar or .7z file");
 
             string filePath = Console.ReadLine();
 
             if (File.Exists(filePath))
             {
-                Console.WriteLine("Zip file found ok");
+                Console.WriteLine("File found");
 
             }
             else
             {
-                Console.WriteLine("file missing");
+                Console.WriteLine("File not found");
 
                 goto Here;
             }
 
             fileExtension = Path.GetExtension(filePath);
 
-            if(fileExtension == ".zip" | fileExtension == ".7z")
+            if (fileExtension == ".zip" | fileExtension == ".7z" | fileExtension == ".rar")
             {
                 string pass = "";
                 int counter = 0;
@@ -91,7 +91,7 @@ namespace ZipFile_Cracker
                             Console.ForegroundColor = ConsoleColor.Yellow;
                             Console.WriteLine(pass);
                             Console.ForegroundColor = ConsoleColor.Green;
-                            Console.WriteLine("Cracked Password = " + pass);
+                            Console.WriteLine("Pass = " + pass);
                             Console.ResetColor();
 
                             file.Close(); //this will close the file stream but in a using statement it will do it anyway
@@ -106,7 +106,7 @@ namespace ZipFile_Cracker
                             Console.WriteLine(pass);
                         }
                         counter++;
-                        Console.Title = "Current Password Count : " + counter.ToString();
+                        Console.Title = "Passes used: " + counter.ToString();
                         Thread.Sleep(100); //decrease to go faster but be kind
 
                     }
@@ -122,7 +122,7 @@ namespace ZipFile_Cracker
             }
             else
             {
-                Console.WriteLine("The file you chosen was not a .zip or .7z file type");
+                Console.WriteLine("The file is not a .rar, .zip or a .7zip");
                 goto Here;
             }
 
@@ -153,7 +153,7 @@ namespace ZipFile_Cracker
         private static void ZipExtractor_Extracting(object sender, ProgressEventArgs e)
         {
             Console.ForegroundColor = ConsoleColor.Blue;
-            Console.WriteLine("Extracting files Ok !!!");
+            Console.WriteLine("Extracting !!!");
             Console.ResetColor();
             unZippedOK = true; //we will use this to stop the function
         }
